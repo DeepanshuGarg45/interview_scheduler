@@ -1,13 +1,25 @@
-import React from 'react';
-import CandidateList from './components/CandidateList';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import Dashboard from './pages/Dashboard';
+import Candidates from './pages/Candidates';
+import Interviewers from './pages/Interviewers';
+import Interviews from './pages/Interviews';
+import AuditLogs from './pages/AuditLogs';
+import Navbar from './components/Navbar';
 
-function App() {
+export default function App() {
   return (
-    <div style={{ padding: '1rem' }}>
-      <h1>Interview Scheduler</h1>
-      <CandidateList />
-    </div>
+    <Router>
+      <Navbar />
+      <div className="p-4">
+        <Routes>
+          <Route path="/" element={<Navigate to="/dashboard" />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/candidates" element={<Candidates />} />
+          <Route path="/interviewers" element={<Interviewers />} />
+          <Route path="/interviews" element={<Interviews />} />
+          <Route path="/audit" element={<AuditLogs />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
-
-export default App;
